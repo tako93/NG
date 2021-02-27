@@ -1,0 +1,21 @@
+
+$myred: red;
+$basepadding: 20px;
+$borderwidth: 3px;
+
+
+.title{
+    color: lightgreen;
+}
+
+h2 {
+    color: $myred;
+}
+
+p {
+    color: $myred;
+    border: $borderwidth solid $myred;
+    padding: $basepadding;
+}
+
+
