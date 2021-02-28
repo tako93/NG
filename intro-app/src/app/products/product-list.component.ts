@@ -9,7 +9,11 @@ import { IProduct } from "./product";
 
 
 export class ProductList implements OnInit{
+    private _filterValue: string = '';
+   
     showImages: boolean = false;
+    filteredProducts: IProduct[] = [];
+
     productList: IProduct[] = [
         {
             imageUrl: "https://fdn2.gsmarena.com/vv/bigpic/xiaomi-redmi-k40-pro.jpg",
@@ -31,11 +35,32 @@ export class ProductList implements OnInit{
         }
     ];
 
-    
+    constructor() {
+        this.filterValue = 'moto';
+    }
 
     ngOnInit(): void {
         
     }
+
+
+
+    get filterValue(): string {
+        return this._filterValue;
+    }
+    set filterValue(value: string) {
+
+        this._filterValue = value;
+        if (this._filterValue) {
+            this.filteredProducts = this.productList.filter((p) => {return  p.productName.toLowerCase().includes(this._filterValue.toLowerCase()) });     
+        } else {
+
+            this.filteredProducts = this.productList.slice();
+        }
+       
+    }
+
+
 
     toggleImages(): void {
         this.showImages = !this.showImages
