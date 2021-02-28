@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
 import { IProduct } from "./product";
 
 @Component({
@@ -8,9 +8,9 @@ import { IProduct } from "./product";
 })
 
 
-export class ProductList implements OnInit{
+export class ProductList implements OnInit, OnDestroy {
     private _filterValue: string = '';
-   
+
     showImages: boolean = false;
     filteredProducts: IProduct[] = [];
 
@@ -36,14 +36,17 @@ export class ProductList implements OnInit{
     ];
 
     constructor() {
-        this.filterValue = 'moto';
+        this.filterValue = 'xiaomi';
     }
 
     ngOnInit(): void {
-        
+
     }
 
 
+     ngOnDestroy(): void {
+
+    }
 
     get filterValue(): string {
         return this._filterValue;
@@ -52,12 +55,12 @@ export class ProductList implements OnInit{
 
         this._filterValue = value;
         if (this._filterValue) {
-            this.filteredProducts = this.productList.filter((p) => {return  p.productName.toLowerCase().includes(this._filterValue.toLowerCase()) });     
+            this.filteredProducts = this.productList.filter((p) => { return p.productName.toLowerCase().includes(this._filterValue.toLowerCase()) });
         } else {
 
             this.filteredProducts = this.productList.slice();
         }
-       
+
     }
 
 
@@ -65,7 +68,7 @@ export class ProductList implements OnInit{
     toggleImages(): void {
         this.showImages = !this.showImages
     }
- }
+}
 
 
 
