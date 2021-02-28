@@ -9,6 +9,7 @@ import { IProduct } from "./product";
 
 
 export class ProductList implements OnInit{
+    showImages: boolean = false;
     productList: IProduct[] = [
         {
             imageUrl: "https://fdn2.gsmarena.com/vv/bigpic/xiaomi-redmi-k40-pro.jpg",
@@ -36,6 +37,9 @@ export class ProductList implements OnInit{
         
     }
 
+    toggleImages(): void {
+        this.showImages = !this.showImages
+    }
  }
 
 
