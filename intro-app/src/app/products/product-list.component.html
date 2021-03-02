@@ -18,6 +18,7 @@
       <th>Name</th>
       <th>Code</th>
       <th>Price</th>
+      <th>Rating</th>
     </tr>
   </thead>
   <tbody>
@@ -33,6 +34,9 @@
       <td>{{ item.productName | lowercase }}</td>
       <td>{{ item.productCode | uppercase | convertToSpace: "-" }}</td>
       <td>{{ item.price | currency: "USD":"symbol":"1.2-2" }}</td>
+      <td>
+        <app-rating [rating]="item.rating" (onChange)=" onRatingChange($event)"></app-rating>
+      </td>
     </tr>
   </tbody>
 </table>
