@@ -10,22 +10,6 @@ interface Page { //1/----------
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent {//2/------------
   title = 'intro-app';
-  account: Page = { //2/------------
-
-    title: 'app-account'
-  };
-  dashboard: Page = {
-
-    title: 'app-dashboard'
-  };
-
-  currentPage: Page = {
-    title: '',
-  };
-
-  changeComponent(cName: string) {
-    this.currentPage.title = this.currentPage.title === cName ? '': cName;
-  }
 }

@@ -9,7 +9,7 @@ import { ProductService } from "./product.service";
 })
 
 
-export class ProductList implements OnInit, OnDestroy {
+export class ProductListComponent implements OnInit, OnDestroy {
     private _filterValue: string = '';
 
     showImages: boolean = false;

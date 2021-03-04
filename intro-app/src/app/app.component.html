@@ -10,9 +10,15 @@
 <button class="btn btn-primary" (click)="changeComponent(dashboard.title)"  >Show Dashboard</button>
 <app-comp *ngIf="currentPage.title === account.title" ></app-comp>
 <app-dashboard *ngIf="currentPage.title === dashboard.title"  ></app-dashboard> -->
+<div class="container">
+  <app-navigation></app-navigation>
 
-<hr>
+  <hr />
+  <div class="bg-success p-4 text-white rounded-3 shadow">
+    <h1>My First NG App</h1>
+  </div>
+</div>
 
-<app-product-list></app-product-list>
-
-
+<div class="container mt-5">
+  <router-outlet></router-outlet>
+</div>
