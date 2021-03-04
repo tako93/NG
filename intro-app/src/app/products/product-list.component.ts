@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
-import { IProduct } from "./product";
+import { IProduct, ITodo } from "./product";
+import { ProductService } from "./product.service";
 
 @Component({
     selector: "app-product-list",
@@ -19,27 +20,35 @@ export class ProductList implements OnInit, OnDestroy {
             imageUrl: "https://fdn2.gsmarena.com/vv/bigpic/xiaomi-redmi-k40-pro.jpg",
             productName: "Xiaomi Redmi",
             productCode: "K40 Pro",
-            price: 36.997
+            price: 36.997,
+            rating: 10
         },
         {
             imageUrl: "https://fdn2.gsmarena.com/vv/bigpic/samsung-galaxy-a32-4g-new.jpg",
             productName: "Samsung Galaxy",
             productCode: "A32",
-            price: 22.998
+            price: 22.998,
+            rating: 7
         },
         {
             imageUrl: "https://fdn2.gsmarena.com/vv/bigpic/huawei-p40-4g.jpg",
             productName: "Huawei 4G",
             productCode: "P40",
-            price: 30.997
+            price: 30.997,
+            rating: 7
         }
     ];
 
-    constructor() {
-        this.filterValue = 'xiaomi';
+    constructor(private _productService: ProductService) {
+        // this.filterValue = 'xiaomi';
     }
 
     ngOnInit(): void {
+        this.productList = this._productService.getProduct();
+        this.filterValue = '';
+        this._productService.getTodos().subscribe((data: ITodo[]) => {
+            console.log(data);
+        })
 
     }
 
@@ -68,6 +77,14 @@ export class ProductList implements OnInit, OnDestroy {
     toggleImages(): void {
         this.showImages = !this.showImages
     }
+
+    onRatingChange(message: number): void{
+        console.log(message);
+    }
+
+
+    
+
 }
 
 
