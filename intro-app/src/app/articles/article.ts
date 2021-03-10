@@ -1,4 +1,4 @@
-export interface IArticleResponce {
+export interface IArticleResponse {
   status: string;
   totalResults: number;
   articles: IArticle[];

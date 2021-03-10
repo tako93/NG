@@ -15,6 +15,7 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { ArticlesComponent } from './articles/articles.component';
 import { ArticleCardComponent } from './articles/article-card/article-card.component';
 import { ArticleDetailComponent } from './articles/article-detail/article-detail.component'
+import { AuthGuard } from './auth.guard';
 // import { Http2ServerResponse } from 'http';
 
 @NgModule({
@@ -47,7 +48,8 @@ import { ArticleDetailComponent } from './articles/article-detail/article-detail
        },
          {
          path: 'comp',
-         component: CompComponent
+           component: CompComponent,
+         canActivate: [AuthGuard]
        },
        {
          path: 'home',
