@@ -4,6 +4,15 @@ export interface IArticleResponse {
   articles: IArticle[];
 }
 
+export interface IArticleResponseError {
+  status?: number;
+  message?: string;
+  friendlyMessage?: string; 
+}
+
+
+
+
 export interface IArticle {
   source: IArticleSource;
   author: string;
