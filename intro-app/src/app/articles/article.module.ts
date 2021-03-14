@@ -1,12 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { ArticlesComponent } from '../articles/articles.component';
-import { ArticleCardComponent } from '../articles/article-card/article-card.component';
-import { ArticleDetailComponent } from '../articles/article-detail/article-detail.component';
+import { FormsModule } from '@angular/forms';
 
-
+import { ArticlesComponent } from './articles.component';
+import { ArticleCardComponent } from './article-card/article-card.component';
+import { ArticleDetailComponent } from './article-detail/article-detail.component';
+import { ArticleResolverService } from './article-resolver.service';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ArticleHeaderInterceptor } from './add-header.interceptor.service';
 
 @NgModule({
   declarations: [
@@ -16,22 +18,31 @@ import { ArticleDetailComponent } from '../articles/article-detail/article-detai
   ],
   imports: [
     CommonModule,
-    FormsModule, 
+    FormsModule,
     RouterModule.forChild([
-       {
-         path: 'articles',
-         component:  ArticlesComponent
-       },
- 
       {
-         path: 'articles/:title',
-         component:  ArticleDetailComponent
-       },
-    ])
+        path: 'articles',
+        component: ArticlesComponent,
+        resolve: {
+          articlesResponse: ArticleResolverService,
+        },
+      },
+      {
+        path: 'articles/:title',
+        component: ArticleDetailComponent,
+      },
+    ]),
+  ],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ArticleHeaderInterceptor,
+      multi: true,
+    },
   ],
   exports: [ArticlesComponent],
 })
-export class ArticleModule { }
+export class ArticleModule {}
 
 
 
