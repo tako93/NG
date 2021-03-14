@@ -1,74 +1,49 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { ArticleModule } from './articles/article.module';
+import { AuthModule } from './auth/auth.module';
+import { ProductModule } from './products/product.module';
 import { AppComponent } from './app.component';
-import { CompComponent } from './comp/comp.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { ProductListComponent } from "./products/product-list.component"
-import { ConvertToSpace } from './shared/pipes/convertToSpace.pipe';
-import { RatingComponent } from './rating/rating.component';
 import { HomeComponent } from './home/home.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { NavigationComponent } from './navigation/navigation.component';
-import { ArticlesComponent } from './articles/articles.component';
-import { ArticleCardComponent } from './articles/article-card/article-card.component';
-import { ArticleDetailComponent } from './articles/article-detail/article-detail.component'
-import { AuthGuard } from './auth.guard';
-// import { Http2ServerResponse } from 'http';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    CompComponent, 
-    DashboardComponent,
-    ProductListComponent,
-    RatingComponent,
     HomeComponent,
     PagenotfoundComponent,
-    ConvertToSpace,
     NavigationComponent,
-    ArticlesComponent,
-    ArticleCardComponent,
-    ArticleDetailComponent,
   ],
   imports: [
     BrowserModule,
-    FormsModule, 
     HttpClientModule,
-     RouterModule.forRoot([
-        {
-         path: 'products',
-         component: ProductListComponent
-       },
-       {
-         path: 'dashboard',
-         component: DashboardComponent
-       },
-         {
-         path: 'comp',
-           component: CompComponent,
-         canActivate: [AuthGuard]
-       },
-       {
-         path: 'home',
-         component: HomeComponent
-       },
-         {
-         path: 'articles/:title',
-         component:  ArticleDetailComponent
-       },
-       {
-         path: '',
-         redirectTo: 'home',
-         pathMatch: 'full'
-       },
-       {
-         path: '**',
-         component: PagenotfoundComponent
-       }
-    ])
+    ArticleModule,
+    AuthModule,
+    ProductModule,
+    RouterModule.forRoot([
+     
+     
+      {
+        path: 'home',
+        component: HomeComponent
+      },
+
+      {
+        path: '',
+        redirectTo: 'home',
+        pathMatch: 'full'
+      },
+      {
+        path: '**',
+        component: PagenotfoundComponent
+      }
+    ]),
+  
+
   ],
   providers: [],
   bootstrap: [AppComponent]
