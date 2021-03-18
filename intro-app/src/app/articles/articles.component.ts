@@ -13,11 +13,13 @@ import { FilterForm } from '../data/filter-form-shape.interface';
   styleUrls: ['./articles.component.scss'],
 })
 export class ArticlesComponent implements OnInit {
-  articles: IArticle[] = [];
+  articles: IArticle[] = []; //==npm===
+  page: number = 1; //===npm====
   filterData: FilterForm = {
-    page: 1,
+    // page: 1,
     pageSize: 20,
     qInTitle: 'google',
+   
   };
   constructor(
     private _articleService: ArticleService,
@@ -44,8 +46,11 @@ export class ArticlesComponent implements OnInit {
       (err: IArticleResponseError) => {}
     );
   }
+     
 
   onSubmit(form: NgForm) {
     this.loadArticles();
   }
 }
+
+

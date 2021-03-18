@@ -14,7 +14,7 @@
           [(ngModel)]="filterData.qInTitle"
         />
       </div>
-      <div class="mb-3 col-4">
+      <!-- <div class="mb-3 col-4">
         <label for="pageSize" class="form-label">Page Size</label>
         <input
           type="number"
@@ -24,8 +24,8 @@
           max="50"
           [(ngModel)]="filterData.pageSize"
         />
-      </div>
-      <div class="mb-3 col-4">
+      </div> -->
+      <!-- <div class="mb-3 col-4">
         <label for="page" class="form-label">Page</label>
         <input
           type="number"
@@ -34,7 +34,7 @@
           name="page"
           [(ngModel)]="filterData.page"
         />
-      </div>
+      </div> -->
       <div class="mb-3 col-4">
         <label for="from" class="form-label">From</label>
         <input
@@ -55,9 +55,13 @@
           [(ngModel)]="filterData.to"
         />
       </div>
-      <div class="mb-3 col-4">
+      <div class="mb-3 col-4 mx-auto">
         <label for="sortBy" class="form-label">Sort By Popularity</label>
-        <select class="form-select" name="sortBy"  [(ngModel)]="filterData.sortBy">
+        <select
+          class="form-select"
+          name="sortBy"
+          [(ngModel)]="filterData.sortBy"
+        >
           <option value="relevancy">Relevancy</option>
           <option value="popularity">Popularity</option>
           <option value="publishedAt">PublishedAt</option>
@@ -76,8 +80,17 @@
   <div class="row">
     <app-article-card
       class="col-4 mb-2"
-      *ngFor="let article of articles"
+      *ngFor="
+        let article of articles
+          | paginate: { itemsPerPage: 6, currentPage: page } 
+      "
       [article]="article"
-    ></app-article-card>
+    ></app-article-card> 
+  </div>
+  <div class="mb-3 col-4 mx-auto mt-5"><!-- ====npm=== -->
+
+    <pagination-controls (pageChange)="page = $event"></pagination-controls>
   </div>
 </section>
+
+

@@ -19,7 +19,6 @@ export class ArticleHeaderInterceptor implements HttpInterceptor {
     console.info('ArticleHeaderInterceptor', req.url);
     const clonedReq: HttpRequest<any> = req.clone({
       setHeaders: {
-        // Authorization: API_KEY,
         'X-Api-Key': API_KEY,
       },
     });

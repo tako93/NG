@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { SignInData } from 'src/app/data/sign-in-form.interface';
+import { SignInData, SignInResponse } from 'src/app/data/sign-in-form.interface';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -12,8 +12,8 @@ import { AuthService } from '../auth.service';
 export class SignInComponent implements OnInit {
 
   signInData: SignInData = {
-    email: '',
-    password: '',
+    email: "eve.holt@reqres.in",
+    password: "cityslicka",
     remember: false, //ფორმაში არსებული პარამეტ. ობიექტი
   }
   constructor(private router: Router, private _authService: AuthService) { } //სერვისიდან
@@ -21,11 +21,13 @@ export class SignInComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onSubmit(signInForm: NgForm) {
-    if (this._authService.signIn(this.signInData) === 'okay') {
-      localStorage.setItem('token', Date.now().toString());
-      this.router.navigate(['/auth/dashboard']);
-    }
-  } //ფორმაში შექმნილი პარამეტ. 
-
+   onSubmit(signInForm: NgForm) {
+    this._authService
+      .signIn(this.signInData)
+      .subscribe((response: SignInResponse) => {
+        console.log(response);
+        // this.router.navigate(['/auth/dashboard']);
+      });
+  }
 }
+ //ფორმაში შექმნილი პარამეტ. 
