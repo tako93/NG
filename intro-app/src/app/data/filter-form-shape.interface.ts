@@ -6,7 +6,7 @@ export interface FilterForm {
     sortBy?: SortBy;
     qInTitle: string;
     pageSize: number;
-    page: number;
+    page?: number;
 }
 
 
