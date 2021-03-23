@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
-
+// import { NavigationComponent } from './navigation/navigation.component';
 import { ArticleModule } from './articles/article.module';
 import { AuthModule } from './auth/auth.module';
 import { ProductModule } from './products/product.module';
@@ -12,7 +12,7 @@ import { AppComponent } from './app.component';
 
 import { HomeComponent } from './home/home.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
-import { NavigationComponent } from './navigation/navigation.component';
+
 import { ArticleResolverService } from './articles/article-resolver.service';
 import { LogResponseInterceptor } from './core/log-response.interceptor';
 import { CacheInterceptor } from './core/cache.interceptor';
@@ -23,9 +23,10 @@ import { AddAuthTokenInterceptor } from './core/add-auth-token.interceptor';
     AppComponent,
     HomeComponent,
     PagenotfoundComponent,
-    NavigationComponent,
+    // NavigationComponent
   ],
   imports: [
+    CoreModule, 
     BrowserModule,
     HttpClientModule,
     ArticleModule,
