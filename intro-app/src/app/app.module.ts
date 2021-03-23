@@ -11,7 +11,7 @@ import { CoreModule } from './core/core.module';
 import { AppComponent } from './app.component';
 
 import { HomeComponent } from './home/home.component';
-import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+import { PagenotfoundComponent } from './core/pagenotfound/pagenotfound.component';
 
 import { ArticleResolverService } from './articles/article-resolver.service';
 import { LogResponseInterceptor } from './core/log-response.interceptor';
