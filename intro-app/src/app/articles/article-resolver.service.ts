@@ -22,11 +22,22 @@ export class ArticleResolverService
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<IArticleResponse | IArticleResponseError> {
+    const page: any = route.queryParamMap.get('page') || 1;
+    const pageSize: any = route.queryParamMap.get('pageSize') || 20;
+    const qInTitle: any = route.queryParamMap.get('qInTitle') || 'google';
+    const sortBy: any = route.queryParamMap.get('sortBy') || null;
+    const from: any = route.queryParamMap.get('from') || null;
+    const to: any = route.queryParamMap.get('to') || null;
+  
     const filterData: FilterForm = {
-      page: 1,
-      pageSize: 20,
-      qInTitle: 'google',
+      page,
+      pageSize,
+      qInTitle,
+      sortBy,
+      from,
+      to,
     };
+    this._articleService.filterData = filterData;
     const query: string = new URLSearchParams(filterData as any).toString();
     return this._articleService
       .getArticles(query)

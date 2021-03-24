@@ -9,6 +9,7 @@ import { ArticleDetailComponent } from './article-detail/article-detail.componen
 import { ArticleResolverService } from './article-resolver.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ArticleHeaderInterceptor } from './add-header.interceptor.service';
+import { AuthGuard } from '../auth.guard';
 // import { CoreModule } from '../core/core.module';
 // import { LogResponseInterceptor } from '../core/log-response.interceptor';
 // import { CacheInterceptor } from '../core/cache.interceptor';
@@ -32,6 +33,7 @@ import { ArticleHeaderInterceptor } from './add-header.interceptor.service';
         resolve: {
           articlesResponse: ArticleResolverService,
         },
+        canActivate: [AuthGuard]
       },
       {
         path: 'articles/:title',

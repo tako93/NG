@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
-// import { NavigationComponent } from './navigation/navigation.component';
+
 import { ArticleModule } from './articles/article.module';
 import { AuthModule } from './auth/auth.module';
 import { ProductModule } from './products/product.module';
@@ -23,10 +23,10 @@ import { AddAuthTokenInterceptor } from './core/add-auth-token.interceptor';
     AppComponent,
     HomeComponent,
     PagenotfoundComponent,
-    // NavigationComponent
+
   ],
   imports: [
-    CoreModule, 
+    CoreModule,
     BrowserModule,
     HttpClientModule,
     ArticleModule,
@@ -70,4 +70,4 @@ import { AddAuthTokenInterceptor } from './core/add-auth-token.interceptor';
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
