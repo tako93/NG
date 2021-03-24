@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-// import { catchError, of } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import {
   Resolve,
   ActivatedRouteSnapshot,
@@ -22,13 +22,30 @@ export class ArticleResolverService
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<IArticleResponse | IArticleResponseError> {
+     const page: any =
+      route.queryParamMap.get('page') || this._articleService.filterData.page;
+    const pageSize: any =
+      route.queryParamMap.get('pageSize') ||
+      this._articleService.filterData.pageSize;
+    const qInTitle: any =
+      route.queryParamMap.get('qInTitle') ||
+      this._articleService.filterData.qInTitle;
+    const sortBy: any = route.queryParamMap.get('sortBy') || null;
+    const from: any = route.queryParamMap.get('from') || null;
+    const to: any = route.queryParamMap.get('to') || null;
+  
     const filterData: FilterForm = {
-      page: 1,
-      pageSize: 20,
-      qInTitle: 'google',
+      page,
+      pageSize,
+      qInTitle,
+      sortBy,
+      from,
+      to,
     };
+    this._articleService.filterData = filterData;
     const query: string = new URLSearchParams(filterData as any).toString();
-    return this._articleService.getArticles(query);
-    //   .pipe(catchError((err) => of(err)));
+    return this._articleService
+      .getArticles(query)
+      .pipe(catchError((err) => of(err)));
   }
 }
