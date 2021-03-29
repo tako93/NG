@@ -4,7 +4,7 @@ import { GuardsCheckStart, Router } from '@angular/router';
 import { LocalStorageService } from 'src/app/core/local-storage.service';
 import { SignInData } from 'src/app/data/sign-in-form.interface';
 import { TOKEN_KEY } from 'src/app/shared/constants';
-import { AuthService } from '../auth.service';
+import { AuthService } from '../shared/auth.service';
 // import { User } from '../../data/user-data.interface';
 // import { UserRole } from '../../data/user-roles.interface';
 

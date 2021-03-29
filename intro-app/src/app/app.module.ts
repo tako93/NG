@@ -6,8 +6,6 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 
-
-
 import { ArticleModule } from './articles/article.module';
 import { AuthModule } from './auth/auth.module';
 import { ProductModule } from './products/product.module';
@@ -23,7 +21,8 @@ import { LogResponseInterceptor } from './core/log-response.interceptor';
 import { CacheInterceptor } from './core/cache.interceptor';
 import { AddAuthTokenInterceptor } from './core/add-auth-token.interceptor';
 
-import { firebaseConfig } from '../firebaseConfig'
+import { firebaseConfig } from '../firebaseConfig';
+import { PublicModule } from './public/public.module'
 
 @NgModule({
   declarations: [
@@ -41,8 +40,13 @@ import { firebaseConfig } from '../firebaseConfig'
     AngularFirestoreModule,
     ArticleModule,
     AuthModule,
-    ProductModule,
+    // ProductModule,
     RouterModule.forRoot([
+       {
+        path: 'products',
+        loadChildren: () =>
+        import('./products/product.module').then((m) => m.ProductModule)
+      },
       {
         path: 'home',
         component: HomeComponent,
@@ -60,6 +64,7 @@ import { firebaseConfig } from '../firebaseConfig'
         component: PagenotfoundComponent,
       },
     ]),
+    PublicModule,
   ],
   providers: [
     {

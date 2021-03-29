@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../auth.service';
+import { AuthService } from '../shared/auth.service';
 
 import { SignUpData } from '../../data/sign-up-form.interface';
 import { NgForm } from '@angular/forms';

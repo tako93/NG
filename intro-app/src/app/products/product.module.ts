@@ -19,7 +19,7 @@ import { FormsModule } from '@angular/forms';
     RouterModule.forChild([
 
       {
-        path: 'products',
+        path: '',
         component: ProductListComponent
       },
 
