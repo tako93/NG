@@ -22,13 +22,15 @@ import { CacheInterceptor } from './core/cache.interceptor';
 import { AddAuthTokenInterceptor } from './core/add-auth-token.interceptor';
 
 import { firebaseConfig } from '../firebaseConfig';
-import { PublicModule } from './public/public.module'
+import { PublicModule } from './public/public.module';
+// import { ProductAddComponent } from './products/product-add/product-add.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     PagenotfoundComponent,
+    // ProductAddComponent,
 
   ],
   imports: [
