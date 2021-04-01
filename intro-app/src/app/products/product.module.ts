@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { ProductAddComponent } from './product-add/product-add.component';
 import { AuthGuard } from '../auth.guard';
 import { PublicModule } from '../public/public.module';
+import { ProductEditComponent } from './product-edit/product-edit.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { PublicModule } from '../public/public.module';
     RatingComponent,
     ConvertToSpace,
     ProductAddComponent,
+    ProductEditComponent,
   ],
   imports: [
     CommonModule,
@@ -29,7 +31,10 @@ import { PublicModule } from '../public/public.module';
       {
         path: 'add',
         component: ProductAddComponent,
-        
+      },
+      {
+        path: 'edit/:productId',
+        component: ProductEditComponent,  
       },
     ]),
   ],

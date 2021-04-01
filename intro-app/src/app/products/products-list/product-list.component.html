@@ -1,27 +1,27 @@
-<div class="row">
-  <div class="col-4 mb-4">
-    <h1 class="text-muted bg-gray">Product List</h1>
-    <a class="btn btn-info" [routerLink]="['add']">Add new Product</a>
+<div class="row mb-4">
+  <div class="col-4">
+    <h3 class="text-muted">Product List</h3>
+
+    <a class="btn btn-info" [routerLink]="['add']">Add new product</a>
   </div>
 </div>
 <div class="row px-3">
-  <button class="btn btn-warning col-2 d-block" (click)="toggleImages()">
+  <button class="btn btn-warning col-2" (click)="toggleImages()">
     {{ showImages ? "Hide" : "Show" }} Images
   </button>
   <div class="col-4">
     <input type="search" class="form-control" [(ngModel)]="filterValue" />
-
-    <div class="col-6">
-      <span>Filter By: </span> <b>{{ filterValue }}</b>
-    </div>
+  </div>
+  <div class="col-6">
+    <span>Filter By</span>: <b>{{ filterValue }}</b>
   </div>
 </div>
 <table class="table">
   <thead>
     <tr>
       <th>Image</th>
-      <th>Name</th>
-      <th>Code</th>
+      <th>Product Name</th>
+      <th>Product Code</th>
       <th>Price</th>
       <th>Rating</th>
     </tr>
@@ -32,11 +32,16 @@
         <img
           [src]="item.imageUrl"
           [alt]="item.productName"
+          [style.height.px]="imageHeight"
           class="rounded img-thumbnail"
           *ngIf="showImages"
         />
       </td>
-      <td>{{ item.productName }}</td>
+      <td>
+        <a [routerLink]="['edit/', item.productCode]">
+          {{ item.productName | lowercase }}
+        </a>
+      </td>
       <td>{{ item.productCode | uppercase | convertToSpace: "-" }}</td>
       <td>{{ item.price | currency: "USD":"symbol":"1.2-2" }}</td>
       <td>
