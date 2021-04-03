@@ -5,7 +5,11 @@
     <hr class="divider" />
   </div>
   <div class="col-6 mx-auto">
-    <form #signUpForm="ngForm" (ngSubmit)="onSubmit(signUpForm)">
+    <form
+      #signUpForm="ngForm"
+      (ngSubmit)="onSubmit(signUpForm)"
+      autocomplete="off"
+    >
       <div class="mb-3">
         <label for="email" class="form-label">Email address</label>
         <input
@@ -14,6 +18,7 @@
           id="email"
           name="email"
           [(ngModel)]="signUpData.email"
+          required
         />
       </div>
       <div class="mb-3">
@@ -24,6 +29,7 @@
           id="password"
           name="password"
           [(ngModel)]="signUpData.password"
+          required
         />
       </div>
       <p>

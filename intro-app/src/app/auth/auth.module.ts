@@ -7,7 +7,7 @@ import { AuthGuard } from '../auth.guard';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { FormsModule } from '@angular/forms';
-
+import { PublicModule } from '../public/public.module'
 
 @NgModule({
   declarations: [
@@ -19,6 +19,7 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     FormsModule,
+    PublicModule,
      RouterModule.forChild([
       {
         path: 'auth/sign-in',

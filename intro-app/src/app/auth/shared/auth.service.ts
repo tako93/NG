@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 
-import { LocalStorageService } from '../core/local-storage.service';
+import { LocalStorageService } from '../../core/local-storage.service';
 
 import {
   TOKEN_KEY,
@@ -11,9 +11,9 @@ import {
   TOKEN_EXP_KEY,
   TOKEN_TTL,
   REFRESH_TOKEN_KEY,
-} from '../shared/constants';
-import { SignInData, SignInResponse } from '../data/sign-in-form.interface';
-import { SignUpData, SignUpResponse } from '../data/sign-up-form.interface';
+} from '../../shared/constants';
+import { SignInData, SignInResponse } from '../../data/sign-in-form.interface';
+import { SignUpData, SignUpResponse } from '../../data/sign-up-form.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -22,8 +22,8 @@ export class AuthService {
   redirectUrl: string = '';
   constructor(
     private storageService: LocalStorageService,
-    private http: HttpClient
-  ) {}
+    private http: HttpClient,
+  ) { }
 
   signIn(data: SignInData): Observable<boolean> {
     return this.http
@@ -43,6 +43,7 @@ export class AuthService {
         })
       );
   }
+
 
   signUp(data: SignUpData): Observable<boolean> {
     return this.http
@@ -94,6 +95,7 @@ export class AuthService {
     this.storageService.remove(REFRESH_TOKEN_KEY);
     this.storageService.remove(TOKEN_EXP_KEY);
   }
+
   isAuthorized(): boolean {
     return this.storageService.exists(TOKEN_KEY);
   }

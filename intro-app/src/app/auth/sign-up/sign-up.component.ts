@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { AuthService } from '../auth.service';
 
 import { SignUpData } from '../../data/sign-up-form.interface';
 import { NgForm } from '@angular/forms';
+import { FirebaseAuthService } from '../shared/firebase-auth.service';
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
@@ -14,15 +13,11 @@ export class SignUpComponent implements OnInit {
     email: 'eve.holt@reqres.in',
     password: 'pistol',
   };
-  constructor(private router: Router, private authService: AuthService) {}
+  constructor(private fireAuthService: FirebaseAuthService) {}
 
   ngOnInit(): void {}
 
   onSubmit(signUpForm: NgForm) {
-    this.authService.signUp(this.signUpData).subscribe((registered) => {
-      if (registered) {
-        this.router.navigate(['auth/dashboard']);
-      }
-    });
+    this.fireAuthService.signUp(this.signUpData);
   }
 }

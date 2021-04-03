@@ -1,8 +1,50 @@
-<h2>Dashboard Component</h2>
+<div class="row mb-3">
+  <div class="col-6">
+    <h2 class="title">Dashboard Component</h2>
+    <h4>{{ title }}</h4>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum, excepturi
+      temporibus rerum saepe corrupti, cum sapiente, magnam architecto sed
+      similique at voluptates sequi mollitia quo. Error minima aspernatur dolor
+      laudantium?
+    </p>
+  </div>
+  <div class="col-6">
+    <app-todo-form
+      [todo]="newTodo"
+      (onFormSubmit)="onSubmit($event)"
+      [isEditing]="isEditing"
+    ></app-todo-form>
+  </div>
+</div>
 
-<h4 class="title" >{{ title }}</h4>
+<!-- <button class="btn btn-primary" (click)="onAddItem()">Add Item</button> -->
 
+<div class="row">
+  <div class="col-6">
+    <ul *ngIf="list.length" class="list-group">
+      <li
+        *ngFor="let item of list"
+        class="d-flex justify-content-between"
+        
+        [ngClass]="getClasses(item)"
+      >
+        {{ item.title }}
 
-<p>
-    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quas tempora laudantium veritatis unde mollitia earum aliquid perspiciatis delectus eveniet natus iste magni, non nemo rerum doloremque cupiditate officia repellendus ducimus!
-</p>
+        <div>
+          <button class="btn btn-warning" (click)="onTodoUpdate(item)">
+            <i class="fas fa-pencil-alt"></i>
+          </button>
+
+          <button
+            class="btn btn-danger"
+            (click)="onRemove(item.id)"
+            style="margin-left: 5px"
+          >
+            <i class="fas fa-trash fa-1x"></i>
+          </button>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
